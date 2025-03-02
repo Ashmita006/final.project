@@ -1,0 +1,16 @@
+{
+    "attendance": [
+        {
+            "id": 1,
+            "student_id": 5,
+            "date": "2025-03-01",
+            "status": "Present"
+        },
+        {
+            "id": 2,
+            "student_id": 3,
+            "date": "2025-03-01",
+            "status": "Absent"
+        }
+    ]
+}

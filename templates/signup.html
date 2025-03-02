@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #E2F3F4;
+        font-family: 'Poppins', sans-serif;
+        color: #fff;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Center the signup form */
+    .form-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .form-container {
+        background: #6DC7D1;
+        padding: 80px; /* Increased padding */
+        border-top-right-radius: 25%;
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1), 0 10px 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease-in-out;
+        width: 600px; /* Increased width */
+    }
+
+    .form-container:hover {
+        transform: perspective(500px) rotateX(0deg) rotateY(0deg);
+        box-shadow: 0 30px 50px rgba(0, 0, 0, 0.15), 0 20px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        font-weight: 600;
+        color: #000000;
+        text-align: center;
+        margin-bottom: 40px; /* More spacing */
+        font-size: 36px; /* Bigger title */
+    }
+
+    .form-group label {
+        font-size: 16px; /* Bigger font */
+        font-weight: 600;
+        color: #151414;
+        margin-bottom: 8px;
+    }
+
+    input {
+        width: 100%;
+        padding: 14px; /* Bigger inputs */
+        margin-bottom: 25px;
+        border-radius: 10px;
+        border: 2px solid #ddd;
+        background-color: #f7f7f7;
+        font-size: 18px; /* Bigger text */
+        transition: border-color 0.3s ease;
+    }
+
+    input:focus {
+        outline: none;
+        border-color: #2575fc;
+        box-shadow: 0 0 12px rgba(37, 117, 252, 0.4);
+    }
+
+    .btn-submit {
+        background-color: #2575fc;
+        color: #fff;
+        border: none;
+        padding: 14px;
+        font-size: 20px; /* Bigger button */
+        border-radius: 10px;
+        cursor: pointer;
+        width: 100%;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-submit:hover {
+        background-color: #1d63c0;
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .form-container .form-group {
+        margin-bottom: 30px;
+    }
+
+    .form-container .form-group:last-child {
+        margin-bottom: 0;
+    }
+</style>
+
+<div class="form-wrapper">
+    <div class="form-container">
+        <h2>Signup</h2>
+        <form action="{{ url_for('signup') }}" method="POST">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" name="username" id="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password" id="password" required>
+            </div>
+            <button type="submit" class="btn-submit">Signup</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

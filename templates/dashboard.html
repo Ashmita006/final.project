@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Dashboard</h2>
+
+    <!-- Navigation Buttons -->
+    <div class="mb-4">
+        <a href="{{ url_for('add_student') }}" class="btn btn-success btn-lg me-3">Add New Student</a>
+        <a href="{{ url_for('mark_attendance') }}" class="btn btn-info btn-lg me-3">Mark Attendance</a>
+        <a href="{{ url_for('attendance_report') }}" class="btn btn-primary btn-lg me-3">Attendance Report</a>
+        <a href="{{ url_for('send_late_email') }}" class="btn btn-warning btn-lg me-3">Send Late Email</a>
+        <a href="{{ url_for('low_attendance_email') }}" class="btn btn-danger btn-lg">Send Low Attendance Email</a>
+    </div>
+
+    <!-- Students Table -->
+    <h3 class="mt-5">Students</h3>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Roll Number</th>
+                <th>Email</th>
+                <th>Section</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+                <tr>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.roll_number }}</td>
+                    <td>{{ student.email }}</td>
+                    <td>{{ student.section }}</td>
+                    <td>
+                        <a href="{{ url_for('edit_student', id=student.id) }}" class="btn btn-primary">Edit</a>
+                        <a href="{{ url_for('delete_student', id=student.id) }}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+{% block styles %}
+<style>
+    /* Global Styles */
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f7fa;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin-top: 50px;
+    }
+
+    /* Header */
+    h2 {
+        color: #007bff;
+        font-weight: bold;
+    }
+
+    h3 {
+        margin-top: 30px;
+        color: #333;
+    }
+
+    /* Button Styles */
+    .btn {
+        font-size: 16px;
+        padding: 12px 25px;
+        border-radius: 5px;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
+    .btn-success:hover {
+        background-color: #218838;
+        border-color: #1e7e34;
+    }
+
+    .btn-info {
+        background-color: #17a2b8;
+        border-color: #17a2b8;
+    }
+
+    .btn-info:hover {
+        background-color: #138496;
+        border-color: #117a8b;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+    }
+
+    .btn-warning {
+        background-color: #ffc107;
+        border-color: #ffc107;
+    }
+
+    .btn-warning:hover {
+        background-color: #e0a800;
+        border-color: #d39e00;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border-color: #dc3545;
+    }
+
+    .btn-danger:hover {
+        background-color: #c82333;
+        border-color: #bd2130;
+    }
+
+    /* Table Styling */
+    .table {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .table-bordered th, .table-bordered td {
+        text-align: center;
+        vertical-align: middle;
+        padding: 15px;
+    }
+
+    .table-striped tbody tr:nth-child(odd) {
+        background-color: #f9f9f9;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .btn {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .container {
+            padding: 15px;
+        }
+
+        .table th, .table td {
+            padding: 10px;
+        }
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Send Late Email  Alerts</h2>
+    
+    <!-- Success Message for Late Emails -->
+    <div class="alert alert-success text-center" role="alert">
+        Emails have been sent to students marked as late.
+    </div>
+
+{% endblock %}
+
+{% block css %}
+<style>
+    /* General page styling */
+    body {
+        background-color: #f4f6f9;
+        font-family: Arial, sans-serif;
+        color: #333;
+    }
+
+    .container {
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+    }
+
+    h2 {
+        font-size: 2rem;
+        color: #007bff;
+    }
+
+    .alert {
+        font-size: 1.1rem;
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+
+    .alert-warning {
+        background-color: #fff3cd;
+        color: #856404;
+        border: 1px solid #ffeeba;
+    }
+
+    .card {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+    }
+
+    .card ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .card ul li {
+        font-size: 1rem;
+        color: #6c757d;
+        margin-bottom: 8px;
+    }
+
+    /* Responsive Design for small devices */
+    @media (max-width: 768px) {
+        .container {
+            padding: 20px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+        }
+    }
+</style>
+{% endblock %}
+ 

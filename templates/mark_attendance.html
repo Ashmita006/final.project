@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Attendance</title>
+    <!-- Link to Google Fonts (Custom font for a unique look) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Link to Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+    background-color: #E2F3F4; /* Black Olive color */
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .form-container {
+            background: #6DC7D1;
+            padding: 150px 50px;
+            border-top-right-radius: 30%;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1), 0 10px 15px rgba(0, 0, 0, 0.05); /* 3D shadow effect */
+            transform: perspective(500px) rotateX(2deg) rotateY(-2deg);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .form-container:hover {
+            transform: perspective(500px) rotateX(0deg) rotateY(0deg); /* Hover effect to lift the form */
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.15), 0 20px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-weight: 600;
+            color: #000000;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 32px;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #151414;
+            margin-bottom: 5px;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+            background-color: #f7f7f7;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #2575fc;
+            box-shadow: 0 0 10px rgba(37, 117, 252, 0.4);
+        }
+
+        .btn-submit {
+            background-color: #2575fc;
+            color: #fff;
+            border: none;
+            padding: 12px 0;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-submit:hover {
+            background-color: #1d63c0;
+            transform: translateY(-4px); /* 3D effect when hovered */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-container .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-container .form-group:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+    <script>
+        // JavaScript function to automatically select the next student after submitting
+        function autoSelectNextStudent() {
+            const studentSelect = document.getElementById("student_id");
+            const selectedIndex = studentSelect.selectedIndex;
+            const nextIndex = selectedIndex + 1 < studentSelect.options.length ? selectedIndex + 1 : 0; // Loop back to first student if reached end
+
+            studentSelect.selectedIndex = nextIndex;  // Set the next student as selected
+            // You can submit the form again if needed to automatically mark the next student's attendance.
+            document.getElementById("attendance-form").submit();
+        }
+    </script>
+
+</head>
+<body>
+
+<div class="container">
+    <div class="form-container">
+        <h2>Mark Student Attendance</h2>
+
+        <!-- Section Selection Form -->
+        <form method="POST" action="{{ url_for('mark_attendance') }}">
+            <div class="form-group">
+                <label for="section">Select Section:</label>
+                <select name="section" id="section" onchange="this.form.submit()">
+                    <option value="">-- Select Section --</option>
+                    {% for section in sections %}
+                        <option value="{{ section }}" {% if section == request.form['section'] %}selected{% endif %}>{{ section }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </form>
+
+        {% if request.form['section'] %}
+            <!-- Student Selection and Attendance Status Form -->
+            <form method="POST">
+                <div class="form-group">
+                    <label for="student_id">Select Student:</label>
+                    <select name="student_id" id="student_id">
+                        {% for student in students %}
+                            <option value="{{ student.id }}">{{ student.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="status">Attendance Status:</label>
+                    <select name="status" id="status">
+                        <option value="Present">Present</option>
+                        <option value="Absent">Absent</option>
+                        <option value="Late">Late</option>
+                    </select>
+                </div>
+
+                <button class="btn-submit">Mark Attendance</button>
+            </form>
+        {% endif %}
+        <div class="mt-4 text-center">
+            <a href="{{ url_for('dashboard') }}" class="btn btn-primary">Go Back to Dashboard</a>
+        </div>
+    </div>
+</div>
+
+<!-- Link to Bootstrap JS (Optional) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

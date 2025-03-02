@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Attendance System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #145DA0;
+            padding: 15px 0;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #FFC107;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            transition: 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #FFC107;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        .btn-login {
+            background: white;
+            color: #145DA0;
+            font-weight: bold;
+        }
+
+        .btn-signup {
+            background: #FFC107;
+            color: black;
+            font-weight: bold;
+        }
+
+        .btn-login:hover, .btn-signup:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(to right, #1d252e, #145DA0);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .btn-primary {
+            background: #FFC107;
+            color: black;
+            padding: 12px 25px;
+            font-size: 18px;
+            border-radius: 8px;
+            transition: 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: #e0a800;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .features h2 {
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+
+        .feature-box {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .feature {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+            transition: 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature i {
+            font-size: 40px;
+            color: #145DA0;
+            margin-bottom: 15px;
+        }
+
+        /* Call to Action */
+        .cta {
+            text-align: center;
+            padding: 50px 0;
+            background: #145DA0;
+            color: white;
+        }
+
+        .cta h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">Attendance<span>System</span></a>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="{{ url_for('login') }} " class="btn btn-login">Login</a></li>
+                <li><a href="{{ url_for('signup') }} " class="btn btn-signup">Sign Up</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Track Student Attendance Effortlessly</h1>
+            <p>A smart solution to manage and monitor student attendance in real-time.</p>
+            <a href="{{ url_for('signup') }}" class="btn btn-primary">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2>Why Choose Our System?</h2>
+            <div class="feature-box">
+                <div class="feature">
+                    <i class="fas fa-user-check"></i>
+                    <h3>Automated Attendance</h3>
+                    <p>Quick and efficient attendance tracking.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Analytics Dashboard</h3>
+                    <p>Real-time insights and attendance reports.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-lock"></i>
+                    <h3>Secure & Reliable</h3>
+                    <p>Data is encrypted and safely stored.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta">
+        <h3>Start Managing Attendance Today!</h3>
+        <a href="{{ url_for('signup') }}" class="btn btn-primary">Sign Up Now</a>
+    </section>
+
+</body>
+</html>

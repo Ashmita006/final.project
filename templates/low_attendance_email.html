@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Low Attendance Email Notification</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* General styling for body and container */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #5d5d5d;
+            margin-bottom: 30px;
+        }
+
+        .status-message {
+            padding: 20px;
+            background-color: #d4edda;
+            border-radius: 5px;
+            color: #155724;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .error-message {
+            padding: 20px;
+            background-color: #f8d7da;
+            border-radius: 5px;
+            color: #721c24;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Low Attendance Email Notification</h2>
+
+        <!-- Status Message -->
+        <div class="status-message">
+            <h4>Emails have been sent to students with low attendance.</h4>
+            <p>The students who have less than 50% attendance will now receive an email regarding their attendance status. Please check your email system for further updates.</p>
+        </div>
+
+        <!-- Button to trigger next action -->
+        <div class="text-center mt-4">
+            <a href="{{ url_for('dashboard') }}" class="btn btn-primary">Go Back to Dashboard</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

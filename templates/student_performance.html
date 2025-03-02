@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h2 class="text-center">Student Performance Tracking</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Roll Number</th>
+                    <th>Section</th>
+                    <th>Attendance Percentage</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in performance_data %}
+                    <tr>
+                        <td>{{ data.student.name }}</td>
+                        <td>{{ data.student.roll_number }}</td>
+                        <td>{{ data.student.section }}</td>
+                        <td>{{ data.attendance_percentage }}%</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- You can also add a bar graph or line graph to visualize the performance -->
+        <h4>Attendance Percentage Bar Chart</h4>
+        <img src="data:image/png;base64,{{ bar_chart_url }}" alt="Bar Graph" class="img-fluid">
+    </div>
+{% endblock %}

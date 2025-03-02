@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Edit Student</h2>
+<form method="POST">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" value="{{ student.name }}" required><br>
+
+    <label for="roll_number">Roll Number</label>
+    <input type="text" id="roll_number" name="roll_number" value="{{ student.roll_number }}" required><br>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" value="{{ student.email }}" required><br>
+
+    <label for="section">Section</label>
+    <input type="text" id="section" name="section" value="{{ student.section }}" required><br>
+
+    <button type="submit">Update Student</button>
+</form>
+
+{% endblock %}
