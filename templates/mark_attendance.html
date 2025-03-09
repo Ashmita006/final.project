@@ -11,96 +11,112 @@
 
     <style>
         body {
-    background-color: #E2F3F4; /* Black Olive color */
-    font-family: 'Poppins', sans-serif;
-    color: #fff;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
+            background-color: #020251; /* Light pastel background color */
+            font-family: 'Poppins', sans-serif;
+            color: #2c3e50; /* Darker text color for better readability */
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    
         .container {
-            max-width: 500px;
+            max-width: 700px; /* Increase the max width to make the outer form box larger */
             width: 100%;
         }
-
+    
         .form-container {
-            background: #6DC7D1;
-            padding: 150px 50px;
-            border-top-right-radius: 30%;
-            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1), 0 10px 15px rgba(0, 0, 0, 0.05); /* 3D shadow effect */
+            background: #ffffff;
+            padding: 60px 50px; /* Increased padding for a larger form box */
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.05);
             transform: perspective(500px) rotateX(2deg) rotateY(-2deg);
             transition: transform 0.3s ease-in-out;
         }
-
+    
         .form-container:hover {
-            transform: perspective(500px) rotateX(0deg) rotateY(0deg); /* Hover effect to lift the form */
-            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.15), 0 20px 25px rgba(0, 0, 0, 0.1);
+            transform: perspective(500px) rotateX(0deg) rotateY(0deg);
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.15), 0 15px 25px rgba(0, 0, 0, 0.1);
         }
-
+    
         h2 {
             font-weight: 600;
-            color: #000000;
+            color: #07255a;
             text-align: center;
-            margin-bottom: 30px;
-            font-size: 32px;
+            margin-bottom: 40px; /* Increased margin for spacing */
+            font-size: 32px; /* Increased font size */
+            text-transform: uppercase;
         }
-
+    
         .form-group label {
-            font-size: 14px;
+            font-size: 14px; /* Reduced font size for the inner form */
             font-weight: 600;
-            color: #151414;
-            margin-bottom: 5px;
+            color: #6c757d;
+            margin-bottom: 8px; /* Increased bottom margin */
         }
-
-        select {
+    
+        select, input[type="date"] {
             width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
+            padding: 10px; /* Reduced padding to make the inner form smaller */
+            margin-bottom: 20px; /* Adjusted margin */
             border-radius: 8px;
             border: 2px solid #ddd;
             background-color: #f7f7f7;
-            font-size: 16px;
-            transition: border-color 0.3s ease;
+            font-size: 16px; /* Adjusted font size for smaller input fields */
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
-
-        select:focus {
+    
+        select:focus, input[type="date"]:focus {
             outline: none;
             border-color: #2575fc;
-            box-shadow: 0 0 10px rgba(37, 117, 252, 0.4);
+            box-shadow: 0 0 8px rgba(37, 117, 252, 0.4);
         }
-
+    
         .btn-submit {
             background-color: #2575fc;
             color: #fff;
             border: none;
-            padding: 12px 0;
-            font-size: 18px;
+            padding: 12px 0; /* Reduced padding for the button */
+            font-size: 18px; /* Reduced font size */
             border-radius: 8px;
             cursor: pointer;
-            width: 100%;
+            width: 50%;
             transition: background-color 0.3s ease, transform 0.2s ease;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-
+    
         .btn-submit:hover {
             background-color: #1d63c0;
-            transform: translateY(-4px); /* 3D effect when hovered */
+            transform: translateY(-4px);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
-
+    
         .form-container .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px; /* Reduced margin between form groups */
         }
-
+    
         .form-container .form-group:last-child {
             margin-bottom: 0;
         }
+    
+        .form-container .text-center {
+            margin-top: 30px; /* Adjusted margin for bottom link */
+        }
+    
+        .form-container .text-center a {
+            text-decoration: none;
+            color: #2575fc;
+            font-weight: 600;
+            font-size: 16px; /* Adjusted font size for the link */
+        }
+    
+        .form-container .text-center a:hover {
+            text-decoration: underline;
+        }
     </style>
+    
     <script>
         // JavaScript function to automatically select the next student after submitting
         function autoSelectNextStudent() {
@@ -135,6 +151,14 @@
         </form>
 
         {% if request.form['section'] %}
+            <!-- Date Selection Form -->
+            <form method="POST" action="{{ url_for('mark_attendance') }}">
+                <div class="form-group">
+                    <label for="attendance_date">Select Date:</label>
+                    <input type="date" name="attendance_date" id="attendance_date" required>
+                </div>
+            </form>
+
             <!-- Student Selection and Attendance Status Form -->
             <form method="POST">
                 <div class="form-group">
@@ -158,6 +182,7 @@
                 <button class="btn-submit">Mark Attendance</button>
             </form>
         {% endif %}
+
         <div class="mt-4 text-center">
             <a href="{{ url_for('dashboard') }}" class="btn btn-primary">Go Back to Dashboard</a>
         </div>
